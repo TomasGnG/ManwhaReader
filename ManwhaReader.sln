@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManwhaReader", "ManwhaReader\ManwhaReader.csproj", "{5064B9F8-C084-4278-B5C9-8F3203E03D4C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManwhaReader.Core", "ManwhaReader.Core\ManwhaReader.Core.csproj", "{81EB7993-5D12-4B67-A43B-9FDACB229CA6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5064B9F8-C084-4278-B5C9-8F3203E03D4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5064B9F8-C084-4278-B5C9-8F3203E03D4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5064B9F8-C084-4278-B5C9-8F3203E03D4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5064B9F8-C084-4278-B5C9-8F3203E03D4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81EB7993-5D12-4B67-A43B-9FDACB229CA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81EB7993-5D12-4B67-A43B-9FDACB229CA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81EB7993-5D12-4B67-A43B-9FDACB229CA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81EB7993-5D12-4B67-A43B-9FDACB229CA6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

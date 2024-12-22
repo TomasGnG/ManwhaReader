@@ -1,0 +1,45 @@
+﻿<Window x:Class="ManwhaReader.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ManwhaReader"
+        mc:Ignorable="d"
+        Background="#636363"
+        Title="ManwhaReader" Height="450" Width="800">
+    
+    <Window.Resources>
+        <LinearGradientBrush x:Key="LogoGradient">
+            <GradientStop Color="White" Offset="0.0"/>
+            <GradientStop Color="#33b1ff" Offset="0.6"/>
+        </LinearGradientBrush>
+    </Window.Resources>
+    
+    <StackPanel Orientation="Vertical">
+        <DockPanel Background=" 	#3b3b3b" Height="40" Dock="Top" VerticalAlignment="Center">
+            <Label FontSize="22"
+                   FontWeight="Bold"
+                   VerticalAlignment="Center"
+                   Foreground="{StaticResource LogoGradient}">ManwhaReader</Label>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="5">
+                <Image MouseLeftButtonDown="OnSearchImageClicked"
+                       Cursor="Hand"
+                       HorizontalAlignment="Right">
+                    <Image.Style>
+                        <Style TargetType="{x:Type Image}">
+                            <Setter Property="Source" Value="/Images/search_32x32.png"/>
+                            <Setter Property="MaxHeight" Value="32"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Source" Value="/Images/search_32x32_hovered.png"/>
+                                    <Setter Property="MaxHeight" Value="32"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+            </StackPanel>
+        </DockPanel>
+        <Frame Name="frame" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" NavigationUIVisibility="Hidden"/>
+    </StackPanel>
+</Window>
