@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using System.Windows.Input;
-using System.Windows.Navigation;
 
 namespace ManwhaReader;
 
@@ -18,6 +17,6 @@ public partial class MainWindow : Window
 
     private void OnSearchImageClicked(object sender, MouseButtonEventArgs e)
     {
-        frame.Source = new Uri("Page1.xaml", UriKind.Relative);
+        frame.Source = new Uri("Pages/SearchPage.xaml", UriKind.Relative);
     }
 }

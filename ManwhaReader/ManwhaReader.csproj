@@ -10,6 +10,12 @@
 
     <ItemGroup>
       <None Remove="Images\search_32x32.png" />
+      <Resource Include="Images\Providers\mangadex.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Images\Providers\thunderscans.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
       <Resource Include="Images\search_32x32.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Resource>
@@ -17,10 +23,16 @@
       <Resource Include="Images\search_32x32_hovered.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Resource>
+      <None Remove="Images\thunderscans.png" />
+      <None Remove="Images\mangadex.png" />
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Pages\" />
+      <ProjectReference Include="..\ManwhaReader.Core\ManwhaReader.Core.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Extended.Wpf.Toolkit" Version="4.6.1" />
     </ItemGroup>
 
 </Project>
