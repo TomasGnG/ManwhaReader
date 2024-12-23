@@ -15,8 +15,13 @@
         </LinearGradientBrush>
     </Window.Resources>
     
-    <StackPanel Orientation="Vertical">
-        <DockPanel Background=" 	#3b3b3b" Height="40" Dock="Top" VerticalAlignment="Center">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <DockPanel Grid.Column="0" Grid.Row="0" Background=" 	#3b3b3b" Height="40" Dock="Top" VerticalAlignment="Center">
             <Label FontSize="22"
                    FontWeight="Bold"
                    VerticalAlignment="Center"
@@ -40,6 +45,11 @@
                 </Image>
             </StackPanel>
         </DockPanel>
-        <Frame Name="frame" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" NavigationUIVisibility="Hidden"/>
-    </StackPanel>
+        
+        <Frame Grid.Row="1"
+               Name="frame"
+               HorizontalAlignment="Stretch"
+               VerticalAlignment="Stretch"
+               NavigationUIVisibility="Hidden"/>
+    </Grid>
 </Window>

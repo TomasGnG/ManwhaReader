@@ -8,7 +8,7 @@
       Background="{StaticResource BackgroundBrush}"
       HorizontalAlignment="Stretch"
       VerticalAlignment="Stretch"
-      Title="SearchPage" Height="450" Width="800">
+      Title="SearchPage" MinHeight="350" Height="auto" MinWidth="500" Width="auto">
     
     <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Label Style="{StaticResource LabelStyle}">Choose a provider</Label>
@@ -36,6 +36,16 @@
             <Label Style="{StaticResource LabelStyle}" Padding="0">results have been found</Label>
         </StackPanel>
         
-        <TextBlock VerticalAlignment="Stretch" Name="searchResultsTextBlock" TextWrapping="Wrap" Foreground="White" FontSize="18" />
+        <ListBox Name="resultsList" VerticalAlignment="stretch" MaxHeight="350px" MinWidth="150px" Width="auto" HorizontalAlignment="Center" FontSize="18" ScrollViewer.VerticalScrollBarVisibility="Visible">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="{Binding ImageSource}" MaxHeight="80" MaxWidth="80" Stretch="Uniform"/>
+                        <TextBlock Text="{Binding ProviderName}" FontSize="18" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <TextBlock IsEnabled="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Name="searchResultsTextBlock" TextWrapping="Wrap" Foreground="White" FontSize="18" TextAlignment="Left"/>
     </StackPanel>
 </Page>

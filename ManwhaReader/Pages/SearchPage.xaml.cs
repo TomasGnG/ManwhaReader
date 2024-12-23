@@ -52,7 +52,17 @@ public partial class SearchPage : Page
             resultCountPanel.Visibility = Visibility.Visible;
 
         resultCountTextBlock.Text = results.Count.ToString();
-        searchResultsTextBlock.Text = string.Empty;
-        results.ForEach(x => searchResultsTextBlock.Text += x + "\n");
+        
+        resultsList.Items.Clear();
+        results.ForEach(x =>
+        {
+            resultsList.Items.Add(new ProviderSearchComboBoxItem
+            {
+                ImageSource = new BitmapImage(new Uri(x.ImageUrl)),
+                ProviderName = x.Title
+            });
+        });
+        // searchResultsTextBlock.Text = string.Empty;
+        // results.ForEach(x => searchResultsTextBlock.Text += x + "\n");
     }
 }

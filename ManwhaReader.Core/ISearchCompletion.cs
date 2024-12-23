@@ -5,5 +5,5 @@ public interface ISearchCompletion
     string ProviderName { get; }
     string ProviderImagePath { get; }
     
-    Task<IEnumerable<string>> Search(string searchString);
+    Task<IEnumerable<IManwhaSearchResult>> Search(string searchString);
 }
