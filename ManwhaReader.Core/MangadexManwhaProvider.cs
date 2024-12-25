@@ -13,7 +13,7 @@ public class MangadexManwhaProvider : IManwhaProvider
         if (string.IsNullOrWhiteSpace(searchQuery))
             throw new ArgumentException("Value cannot be null or whitespace.", nameof(searchQuery));
 
-        var url = $"https://api.mangadex.org/manga?limit=20&title={searchQuery}";
+        var url = $"https://api.mangadex.org/manga?limit=10&title={searchQuery}";
         using var client = CreateHttpClient();
         var jsonString = await client.GetStringAsync(url);
         
