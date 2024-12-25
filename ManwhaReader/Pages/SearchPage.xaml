@@ -3,49 +3,80 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
       mc:Ignorable="d"
       Background="{StaticResource BackgroundBrush}"
       HorizontalAlignment="Stretch"
       VerticalAlignment="Stretch"
       Title="SearchPage" MinHeight="350" Height="auto" MinWidth="500" Width="auto">
     
-    <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <Label Style="{StaticResource LabelStyle}">Choose a provider</Label>
-        <ComboBox Name="providerList" Height="auto" MinWidth="150px" Width="auto" IsReadOnly="True" HorizontalAlignment="Center" FontSize="18">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="{Binding ImageSource}" MaxHeight="32" MaxWidth="32" Stretch="Uniform"/>
-                        <TextBlock Text="{Binding ProviderName}" FontSize="18" VerticalAlignment="Center"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
         
-        <Separator Height="25" Background="Transparent" />
+        <StackPanel Grid.Row="0" Orientation="Vertical">
+            <Label Style="{StaticResource LabelStyle}">Choose a provider</Label>
+            <ComboBox Name="providerList"
+                      SelectionChanged="OnProviderListSelectionChanged"
+                      Height="auto"
+                      MinWidth="150px"
+                      Width="auto"
+                      IsReadOnly="True"
+                      HorizontalAlignment="Center"
+                      FontSize="18">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="{Binding ImageSource}" MaxHeight="32" MaxWidth="32" Stretch="UniformToFill"/>
+                            <TextBlock Text="{Binding ProviderName}" FontSize="18" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
         
-        <Label Style="{StaticResource LabelStyle}">Search Manwhas</Label>
-        <xctk:WatermarkTextBox Name="searchTextBox" MaxWidth="250" FontSize="16" Watermark="Press Enter to search" KeyDown="OnSearchFieldKeyDown"/>
+            <Separator VerticalAlignment="Bottom" Height="10" Background="Transparent"/>
+        </StackPanel>
         
-        <Separator Height="10" Background="Transparent"/>
+        <StackPanel Grid.Row="1">
+            <Label Style="{StaticResource LabelStyle}">Search Manwhas</Label>
+            <!-- <xctk:WatermarkTextBox KeepWatermarkOnGotFocus="True" Name="searchTextBox" MaxWidth="250" FontSize="16" Watermark="Press Enter to search" KeyDown="OnSearchFieldKeyDown"/> -->
+            <TextBox Name="searchTextBox" MaxWidth="250" ForceCursor="False" FontSize="16" KeyDown="OnSearchFieldKeyDown"/>
+            <Separator VerticalAlignment="Bottom" Height="10" Background="Transparent"/>
+        </StackPanel>
         
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Name="resultCountPanel" Visibility="Hidden">
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Name="resultCountPanel" Visibility="Hidden">
             <TextBlock Name="resultCountTextBlock" Foreground="LawnGreen" FontSize="18" Text="0" FontWeight="Bold" VerticalAlignment="Center" Padding="0"/>
             <Separator Width="4" Background="Transparent" />
             <Label Style="{StaticResource LabelStyle}" Padding="0">results have been found</Label>
         </StackPanel>
         
-        <ListBox Name="resultsList" VerticalAlignment="stretch" MaxHeight="350px" MinWidth="150px" Width="auto" HorizontalAlignment="Center" FontSize="18" ScrollViewer.VerticalScrollBarVisibility="Visible">
+        <ListBox Grid.Row="3" Name="resultsList"
+                  Margin="10,0,10,10"
+                  FontSize="18"
+                  VerticalAlignment="Top"
+                  HorizontalAlignment="Center"
+                  ScrollViewer.VerticalScrollBarVisibility="Visible"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="{Binding ImageSource}" MaxHeight="80" MaxWidth="80" Stretch="Uniform"/>
-                        <TextBlock Text="{Binding ProviderName}" FontSize="18" VerticalAlignment="Center"/>
+                        <Image Source="{Binding ImageSource}" MaxHeight="160" MaxWidth="100" Stretch="Uniform" />
+                        <TextBlock Text="{Binding ProviderName}" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" TextWrapping="Wrap"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
+            <ListBox.Style>
+                <Style TargetType="{x:Type ListBox}">
+                    <Style.Triggers>
+                        <Trigger Property="HasItems" Value="False">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListBox.Style>
         </ListBox>
-        <TextBlock IsEnabled="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Name="searchResultsTextBlock" TextWrapping="Wrap" Foreground="White" FontSize="18" TextAlignment="Left"/>
-    </StackPanel>
+    </Grid>
 </Page>

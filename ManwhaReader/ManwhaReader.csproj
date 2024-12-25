@@ -13,9 +13,6 @@
       <Resource Include="Images\Providers\mangadex.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Resource>
-      <Resource Include="Images\Providers\thunderscans.png">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Resource>
       <Resource Include="Images\search_32x32.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Resource>
