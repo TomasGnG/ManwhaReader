@@ -43,7 +43,6 @@ public class ReaperscansManwhaProvider : IManwhaProvider
                 imageData = await client.GetByteArrayAsync(thumbnailUrl);
             }
             
-            
             list.Add(new ManwhaSearchResult
             {
                 Title = title!,
