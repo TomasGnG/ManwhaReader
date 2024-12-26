@@ -1,8 +1,9 @@
 namespace ManwhaReader.Core;
 
-public class ManwhaProviderImageProvider
+public static class ManwhaProviderImagePaths
 {
     private const string BaseUrl = "/Images/Providers/";
     
     public static string MangaDex => $"{BaseUrl}mangadex.png";
+    public static string Reaperscans => $"{BaseUrl}reaperscans.png";
 }

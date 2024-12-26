@@ -22,6 +22,10 @@
       </Resource>
       <None Remove="Images\thunderscans.png" />
       <None Remove="Images\mangadex.png" />
+      <None Remove="Images\Providers\reaperscans.png" />
+      <Resource Include="Images\Providers\reaperscans.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
     </ItemGroup>
 
     <ItemGroup>

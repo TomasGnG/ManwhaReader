@@ -39,7 +39,11 @@ public partial class SearchPage : Page
     {
         try
         {
+            if (string.IsNullOrWhiteSpace(Dispatcher.Invoke(() => searchTextBox.Text)))
+                return;
+            
             Dispatcher.Invoke(() => Cursor = Cursors.Wait);
+            Dispatcher.Invoke(() => ForceCursor = true);
             
             if (e.Key != Key.Enter)
                 return;
@@ -54,12 +58,13 @@ public partial class SearchPage : Page
         finally
         {
             Cursor = Cursors.Arrow;
+            ForceCursor = false;
         }
     }
 
     private async Task ShowResults()
     {
-        var results = (await Provider.Search(searchTextBox.Text)).ToList();
+        var results = (await Provider.Search(searchTextBox.Text, loadImagesCheckBox.IsChecked ?? true)).ToList();
 
         if(!resultCountPanel.IsVisible)
             resultCountPanel.Visibility = Visibility.Visible;
@@ -69,10 +74,11 @@ public partial class SearchPage : Page
         resultsList.Items.Clear();
         results.ForEach(x =>
         {
-            BitmapImage bmp;
-            using (var ms = new MemoryStream(x.ImageData))
+            var bmp = new BitmapImage();
+
+            if (loadImagesCheckBox.IsChecked ?? true)
             {
-                bmp = new BitmapImage();
+                using var ms = new MemoryStream(x.ImageData);
                 bmp.BeginInit();
                 bmp.StreamSource = ms;
                 bmp.CacheOption = BitmapCacheOption.OnLoad;

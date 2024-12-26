@@ -1,7 +1,9 @@
-﻿<Application x:Class="ManwhaReader.App"
+﻿<!-- ReSharper disable once ObsoleteElementError -->
+<Application x:Class="ManwhaReader.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             StartupUri="MainWindow.xaml">
+             StartupUri="MainWindow.xaml"
+             ThemeMode="Light">
     <Application.Resources>
         <SolidColorBrush x:Key="BackgroundBrush" Color="#636363"/>
         <Style TargetType="{x:Type Label}" x:Key="LabelStyle">

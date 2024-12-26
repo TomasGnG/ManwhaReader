@@ -5,5 +5,5 @@ public interface IManwhaProvider
     string Name { get; }
     string ImageUrl { get; }
     
-    Task<IEnumerable<IManwhaSearchResult>> Search(string searchQuery);
+    Task<IEnumerable<IManwhaSearchResult>> Search(string searchQuery, bool loadImages = true);
 }

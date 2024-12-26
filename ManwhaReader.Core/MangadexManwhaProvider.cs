@@ -6,9 +6,9 @@ namespace ManwhaReader.Core;
 public class MangadexManwhaProvider : IManwhaProvider
 {
     public string Name => "MangaDex";
-    public string ImageUrl => ManwhaProviderImageProvider.MangaDex;
+    public string ImageUrl => ManwhaProviderImagePaths.MangaDex;
     
-    public async Task<IEnumerable<IManwhaSearchResult>> Search(string searchQuery)
+    public async Task<IEnumerable<IManwhaSearchResult>> Search(string searchQuery, bool loadImages = true)
     {
         if (string.IsNullOrWhiteSpace(searchQuery))
             throw new ArgumentException("Value cannot be null or whitespace.", nameof(searchQuery));
@@ -33,7 +33,7 @@ public class MangadexManwhaProvider : IManwhaProvider
             list.Add(new ManwhaSearchResult
             {
                 Title = jsonObject["attributes"]?["title"]?.First?.First?.ToString()!,
-                ImageData = GetManwhaCoverImageData(jsonObject["id"]?.ToString()!, coverId?.ToString()!)
+                ImageData = loadImages ? GetManwhaCoverImageData(jsonObject["id"]?.ToString()!, coverId?.ToString()!) : []
             });
         }
 
