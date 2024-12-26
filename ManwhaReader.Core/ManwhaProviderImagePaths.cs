@@ -6,4 +6,5 @@ public static class ManwhaProviderImagePaths
     
     public static string MangaDex => $"{BaseUrl}mangadex.png";
     public static string Reaperscans => $"{BaseUrl}reaperscans.png";
+    public static string ManhuaPlus => $"{BaseUrl}manhuaplus.png";
 }

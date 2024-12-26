@@ -26,6 +26,10 @@
       <Resource Include="Images\Providers\reaperscans.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Resource>
+      <None Remove="Images\Providers\manhuaplus.png" />
+      <Resource Include="Images\Providers\manhuaplus.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
     </ItemGroup>
 
     <ItemGroup>
