@@ -17,12 +17,13 @@
     
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         
         <DockPanel Grid.Column="0" Grid.Row="0" Background=" 	#3b3b3b" Height="40" Dock="Top" VerticalAlignment="Center">
             <Label FontSize="22"
+                   Margin="5,0,0,0"
                    FontWeight="Bold"
                    VerticalAlignment="Center"
                    Foreground="{StaticResource LogoGradient}">ManwhaReader</Label>
