@@ -20,6 +20,7 @@ public partial class SearchPage : Page
     }
     
     private IManwhaProvider Provider { get; set; }
+    private bool searching;
 
     private void InitializeSearchProviders()
     {
@@ -42,21 +43,31 @@ public partial class SearchPage : Page
             if (string.IsNullOrWhiteSpace(Dispatcher.Invoke(() => searchTextBox.Text)))
                 return;
             
-            Dispatcher.Invoke(() => Cursor = Cursors.Wait);
-            Dispatcher.Invoke(() => ForceCursor = true);
-            
             if (e.Key != Key.Enter)
                 return;
 
+            if (searching)
+            {
+                e.Handled = true;
+                return;
+            }
+            
+            Dispatcher.Invoke(() => Cursor = Cursors.Wait);
+            Dispatcher.Invoke(() => ForceCursor = true);
+
+            searching = true;
             await ShowResults();
+            e.Handled = true;
         }
         catch (Exception ex)
         {
+            e.Handled = false;
             MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             Console.WriteLine(ex);
         }
         finally
         {
+            searching = false;
             Cursor = Cursors.Arrow;
             ForceCursor = false;
         }
