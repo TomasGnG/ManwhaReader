@@ -30,7 +30,7 @@
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="{Binding ImageSource}" MaxHeight="32" MaxWidth="32" Stretch="UniformToFill"/>
+                            <Image Source="{Binding ImageSource}" MaxHeight="32" MaxWidth="32" Stretch="Uniform"/>
                             <TextBlock Text="{Binding ProviderName}" FontSize="18" VerticalAlignment="Center"/>
                         </StackPanel>
                     </DataTemplate>
@@ -42,7 +42,7 @@
         
         <StackPanel Grid.Row="1">
             <Label Style="{StaticResource LabelStyle}">Search Manwhas</Label>
-            <TextBox Name="searchTextBox" MaxWidth="250" ForceCursor="False" FontSize="16" KeyDown="OnSearchFieldKeyDown"/>
+            <TextBox Name="searchTextBox" MaxWidth="250" ForceCursor="False" Cursor="Arrow" FontSize="16" KeyDown="OnSearchFieldKeyDown"/>
             <CheckBox Name="loadImagesCheckBox"
                       IsChecked="True"
                       HorizontalAlignment="Center"
