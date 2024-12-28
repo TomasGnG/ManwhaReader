@@ -56,8 +56,8 @@ public partial class SearchPage : Page
             Dispatcher.Invoke(() => ForceCursor = true);
 
             searching = true;
-            await ShowResults();
             e.Handled = true;
+            await ShowResults();
         }
         catch (Exception ex)
         {
@@ -123,5 +123,5 @@ public partial class SearchPage : Page
         .Cast<IManwhaProvider>()
         .ToList();
     
-    private IManwhaProvider GetProviderByName(string providerName) => GetProviders().FirstOrDefault(x => x.Name == providerName)!;
+    private static IManwhaProvider GetProviderByName(string providerName) => GetProviders().FirstOrDefault(x => x.Name == providerName)!;
 }
