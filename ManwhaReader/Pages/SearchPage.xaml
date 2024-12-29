@@ -12,7 +12,9 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="10" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="10" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
@@ -36,11 +38,9 @@
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-        
-            <Separator VerticalAlignment="Bottom" Height="10" Background="Transparent"/>
         </StackPanel>
         
-        <StackPanel Grid.Row="1">
+        <StackPanel Grid.Row="2">
             <Label Style="{StaticResource LabelStyle}">Search Manwhas</Label>
             <TextBox Name="searchTextBox" MaxWidth="250" ForceCursor="False" Cursor="Arrow" FontSize="16" KeyDown="OnSearchFieldKeyDown"/>
             <CheckBox Name="loadImagesCheckBox"
@@ -48,16 +48,15 @@
                       HorizontalAlignment="Center"
                       FontSize="14"
                       Foreground="White">Load thumbnails?</CheckBox>
-            <Separator VerticalAlignment="Bottom" Height="10" Background="Transparent"/>
         </StackPanel>
         
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Name="resultCountPanel" Visibility="Hidden">
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center" Name="resultCountPanel" Visibility="Hidden">
             <TextBlock Name="resultCountTextBlock" Foreground="LawnGreen" FontSize="18" Text="0" FontWeight="Bold" VerticalAlignment="Center" Padding="0"/>
             <Separator Width="4" Background="Transparent" />
             <Label Style="{StaticResource LabelStyle}" Padding="0">results have been found</Label>
         </StackPanel>
         
-        <ListBox Grid.Row="3" Name="resultsList"
+        <ListBox Grid.Row="5" Name="resultsList"
                   Margin="10,0,10,10"
                   FontSize="18"
                   VerticalAlignment="Top"
@@ -66,10 +65,14 @@
                   ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="{Binding ImageSource}" MaxHeight="160" MaxWidth="100" Stretch="Uniform" />
-                        <TextBlock Text="{Binding ProviderName}" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" TextWrapping="Wrap"/>
-                    </StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" Source="{Binding ImageSource}" MaxHeight="160" MaxWidth="100" Stretch="Uniform" />
+                        <TextBlock Grid.Column="1" Text="{Binding ProviderName}" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" TextWrapping="Wrap"/>
+                    </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
             <ListBox.Style>
