@@ -30,14 +30,18 @@
       <Resource Include="Images\Providers\manhuaplus.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Resource>
+      <None Remove="Images\notfound.png" />
+      <Resource Include="Images\notfound.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\ManwhaReader.Core\ManwhaReader.Core.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <PackageReference Include="Extended.Wpf.Toolkit" Version="4.6.1" />
-    </ItemGroup>
-
+    <PropertyGroup>
+        <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+    </PropertyGroup>
+    
 </Project>

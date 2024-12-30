@@ -20,4 +20,8 @@
       <ProjectReference Include="..\ManwhaReader.Core\ManwhaReader.Core.csproj" />
     </ItemGroup>
 
+    <PropertyGroup>
+        <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+    </PropertyGroup>
+    
 </Project>

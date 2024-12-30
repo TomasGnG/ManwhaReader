@@ -1,6 +1,6 @@
-﻿using System.Configuration;
-using System.Data;
-using System.Windows;
+﻿using System.Windows;
+using DevExpress.Xpo;
+using DevExpress.Xpo.DB;
 
 namespace ManwhaReader;
 
@@ -9,4 +9,12 @@ namespace ManwhaReader;
 /// </summary>
 public partial class App : Application
 {
+    protected override void OnStartup(StartupEventArgs e)
+    {
+        base.OnStartup(e);
+
+        const string connectionString = "XpoProvider=SQLite;Data Source=Data.db3;Read Only=false";
+
+        XpoDefault.DataLayer = XpoDefault.GetDataLayer(connectionString, AutoCreateOption.DatabaseAndSchema);
+    }
 }
