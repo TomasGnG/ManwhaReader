@@ -6,7 +6,7 @@
         mc:Ignorable="d"
         Background="{StaticResource BackgroundBrush}"
         WindowStartupLocation="CenterScreen"
-        Title="ManwhaReader" Height="450" Width="800">
+        Title="ManwhaReader" MinHeight="450" MinWidth="800">
     
     <Window.Resources>
         <LinearGradientBrush x:Key="LogoGradient">
