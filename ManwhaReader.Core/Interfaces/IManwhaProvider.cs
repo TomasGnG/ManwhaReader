@@ -1,3 +1,5 @@
+using ManwhaReader.Core.DatabaseObjects;
+
 namespace ManwhaReader.Core.Interfaces;
 
 public interface IManwhaProvider
@@ -6,4 +8,5 @@ public interface IManwhaProvider
     string ImageUrl { get; }
     
     Task<IEnumerable<IManwhaSearchResult>> Search(string searchQuery, bool loadImages = true);
+    Task<Manwha> GetManwhaByTitle(string title);
 }
