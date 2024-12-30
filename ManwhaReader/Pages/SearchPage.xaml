@@ -70,6 +70,7 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
+                        
                         <Image Grid.Column="0" Source="{Binding ImageSource}" MaxHeight="160" MaxWidth="100" Stretch="Uniform" />
                         <TextBlock Grid.Column="1" Text="{Binding ProviderName}" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" TextWrapping="Wrap"/>
                     </Grid>
