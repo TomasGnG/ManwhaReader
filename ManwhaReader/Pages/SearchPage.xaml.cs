@@ -81,8 +81,9 @@ public partial class SearchPage : Page
             resultCountPanel.Visibility = Visibility.Visible;
 
         resultCountTextBlock.Text = results.Count.ToString();
+
+        var list = new List<IProviderSearchComboBoxItem>();
         
-        resultsList.Items.Clear();
         results.ForEach(x =>
         {
             var bmp = new BitmapImage();
@@ -96,17 +97,32 @@ public partial class SearchPage : Page
                 bmp.EndInit();
             }
             
-            resultsList.Items.Add(new ProviderSearchComboBoxItem
+            list.Add(new ProviderSearchComboBoxItem
             {
                 ImageSource = bmp,
                 ProviderName = x.Title
             });
         });
+        
+        resultsList.ItemsSource = list;
     }
 
-    private void OnResultListItemSelected(object sender, RoutedEventArgs e)
+    private async void OnResultListItemSelected(object sender, RoutedEventArgs e)
     {
-        e.Handled = true;
+        try
+        {
+            e.Handled = true;
+            var selected = (IProviderSearchComboBoxItem)resultsList.SelectedItem;
+            
+            var manwha = await Provider.GetManwhaByTitle(selected.ProviderName);
+            
+            NavigationService?.Navigate(new ManwhaPage(manwha));
+        }
+        catch (Exception exception)
+        {
+            MessageBox.Show(exception.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            Console.WriteLine(exception);
+        }
     }
 
     private void OnProviderListSelectionChanged(object sender, SelectionChangedEventArgs e)
