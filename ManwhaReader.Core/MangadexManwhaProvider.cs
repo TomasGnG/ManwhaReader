@@ -51,9 +51,7 @@ public class MangadexManwhaProvider : IManwhaProvider
         var url = $"https://api.mangadex.org/manga?title={title}";
         var jsonString = await client.GetStringAsync(url);
         
-        var jsonArray = JArray.Parse(jsonString)["data"];
-
-        if (jsonArray == null)
+        if (JObject.Parse(jsonString)["data"] is not JArray jsonArray)
             throw new InvalidOperationException("Response data cannot be null.");
         
         var jObject = jsonArray.FirstOrDefault(x => string.Equals(title, x["attributes"]?["title"]?.First?.First?.ToString(), StringComparison.InvariantCultureIgnoreCase));
@@ -108,7 +106,7 @@ public class MangadexManwhaProvider : IManwhaProvider
     private static HttpClient CreateHttpClient()
     {
         var client = new HttpClient();
-        client.DefaultRequestHeaders.Add("User-Agent", "ManwhaReader");
+        client.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:128.0) Gecko/20100101 Firefox/128.0");
         return client;
     }
 }
