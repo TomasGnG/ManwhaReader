@@ -3,41 +3,130 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:system="clr-namespace:System;assembly=System.Runtime"
       mc:Ignorable="d"
       Background="{StaticResource BackgroundBrush}"
       Title="ManwhaPage" MinHeight="450" MinWidth="600">
-    <Grid>
+    <Grid Margin="15" HorizontalAlignment="Center">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="250"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         
-        <Image Grid.Column="0" Name="thumbnail" Source="/Images/notfound.png" VerticalAlignment="Top"/>
+        <Image Grid.Column="0" Name="thumbnail" Source="/Images/notfound.png" VerticalAlignment="Top" Stretch="Uniform"/>
         
-        <Grid Grid.Column="1" VerticalAlignment="Top" ShowGridLines="True">
+        <Grid Grid.Column="1" VerticalAlignment="Top" Margin="4,0,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition />
+                <RowDefinition Height="8"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="4"/>
                 <RowDefinition />
-                <RowDefinition Height="4"/>
+                <RowDefinition Height="8"/>
                 <RowDefinition />
             </Grid.RowDefinitions>
             
-            <TextBlock Grid.Row="0" Name="title" Foreground="White" FontSize="20" FontWeight="Bold">Title</TextBlock>
-            
-            <ListView Grid.Row="2" Background="{StaticResource BackgroundBrush}">
-                <ListView.ItemsPanel>
+            <TextBox Grid.Row="0"
+                     Name="title"
+                     Foreground="White"
+                     FontSize="20"
+                     FontWeight="Bold"
+                     Background="#3b3b3b"
+                     HorizontalAlignment="Left"
+                     BorderThickness="0"
+                     TextWrapping="Wrap"
+                     Margin="0,4,0,0"
+                     Text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor"
+                     IsReadOnly="True">
+                <TextBox.Style>
+                    <Style TargetType="TextBox">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="TextBox">
+                                    <Border BorderThickness="{TemplateBinding BorderThickness}" 
+                                            BorderBrush="{TemplateBinding BorderBrush}" 
+                                            CornerRadius="4"
+                                            Padding="2"
+                                            Background="{TemplateBinding Background}">
+                                        <ScrollViewer x:Name="PART_ContentHost" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+
+            <ItemsControl Grid.Row="2" Name="tags">
+                <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal" Background="{StaticResource BackgroundBrush}" />
+                        <WrapPanel HorizontalAlignment="Left" />
                     </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
+                </ItemsControl.ItemsPanel>
                 
-                <ListView.Items>
-                    <ListViewItem>Sci-FI</ListViewItem>
-                    <ListViewItem>Whatever</ListViewItem>
-                    <ListViewItem>Action</ListViewItem>
-                </ListView.Items>
-            </ListView>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Background="#3b3b3b" CornerRadius="4" Margin="0,0,4,4">
+                            <TextBlock Text="{Binding}" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="4"/>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                
+                <ItemsControl.ItemsSource>
+                    <x:Array Type="system:String">
+                        <system:String>Sci-Fi</system:String>
+                        <system:String>Maiu</system:String>
+                        <system:String>WhatEver</system:String>
+                        <system:String>Serious</system:String>
+                        <system:String>Broo</system:String>
+                        <system:String>Maiu</system:String>
+                        <system:String>WhatEver</system:String>
+                        <system:String>Serious</system:String>
+                        <system:String>Broo</system:String>
+                    </x:Array>
+                </ItemsControl.ItemsSource>
+            </ItemsControl>
+            
+            <Border Grid.Row="4" Background="#3b3b3b" CornerRadius="4" Padding="4,2,4,2" BorderThickness="0" HorizontalAlignment="Left">
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="16" Foreground="White" Padding="0,0,4,0">Status:</Label>
+                    <TextBlock Name="status" Text="ongoing" FontSize="16" Foreground="White" />
+                </StackPanel>
+            </Border>
+            
+            <TextBox Grid.Row="6"
+                     Name="description"
+                     Foreground="White"
+                     FontSize="16"
+                     Background="#3b3b3b"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Stretch"
+                     BorderThickness="0"
+                     TextWrapping="Wrap"
+                     VerticalScrollBarVisibility="Auto"
+                     Text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor, consetetur sadipscing elitr"
+                     IsReadOnly="True">
+                <TextBox.Style>
+                    <Style TargetType="TextBox">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="TextBox">
+                                    <Border BorderThickness="{TemplateBinding BorderThickness}" 
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            CornerRadius="4"
+                                            Padding="2"
+                                            Background="{TemplateBinding Background}">
+                                        <ScrollViewer x:Name="PART_ContentHost" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
         </Grid>
     </Grid>
 </Page>
