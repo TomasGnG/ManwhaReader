@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Input;
+using ManwhaReader.Pages;
 
 namespace ManwhaReader;
 
@@ -13,8 +14,10 @@ public partial class MainWindow : Window
         InitializeComponent();
     }
 
+    private SearchPage SearchPage { get; set; } = new();
+
     private void OnSearchImageClicked(object sender, MouseButtonEventArgs e)
     {
-        frame.Source = new Uri("Pages/SearchPage.xaml", UriKind.Relative);
+        frame.Navigate(SearchPage);
     }
 }
