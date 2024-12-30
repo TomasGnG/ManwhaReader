@@ -1,4 +1,5 @@
 using HtmlAgilityPack;
+using ManwhaReader.Core.DatabaseObjects;
 using ManwhaReader.Core.Interfaces;
 
 namespace ManwhaReader.Core;
@@ -6,7 +7,7 @@ namespace ManwhaReader.Core;
 public class ManhuaplusManwhaProvider : IManwhaProvider
 {
     public string Name => "ManhuaPlus";
-    public string ImageUrl => ManwhaProviderImagePaths.ManhuaPlus;
+    public string ImageUrl => ImagePathProvider.ProviderManhuaPlus;
     
     public async Task<IEnumerable<IManwhaSearchResult>> Search(string searchQuery, bool loadImages = true)
     {
@@ -59,7 +60,12 @@ public class ManhuaplusManwhaProvider : IManwhaProvider
         
         return list;
     }
-    
+
+    public Task<Manwha> GetManwhaByTitle(string title)
+    {
+        throw new NotImplementedException();
+    }
+
     private static HttpClient CreateHttpClient()
     {
         var client = new HttpClient();

@@ -1,3 +1,4 @@
+using ManwhaReader.Core.DatabaseObjects;
 using ManwhaReader.Core.Interfaces;
 using Newtonsoft.Json.Linq;
 
@@ -6,7 +7,7 @@ namespace ManwhaReader.Core;
 public class ReaperscansManwhaProvider : IManwhaProvider
 {
     public string Name => "Reaperscans";
-    public string ImageUrl => ManwhaProviderImagePaths.Reaperscans;
+    public string ImageUrl => ImagePathProvider.ProviderReaperscans;
     
     public async Task<IEnumerable<IManwhaSearchResult>> Search(string searchQuery, bool loadImages = true)
     {
@@ -52,7 +53,12 @@ public class ReaperscansManwhaProvider : IManwhaProvider
         
         return list;
     }
-    
+
+    public Task<Manwha> GetManwhaByTitle(string title)
+    {
+        throw new NotImplementedException();
+    }
+
     private static HttpClient CreateHttpClient()
     {
         var client = new HttpClient();
