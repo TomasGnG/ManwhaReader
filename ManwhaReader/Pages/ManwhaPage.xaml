@@ -12,10 +12,19 @@
             <ColumnDefinition Width="250"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
         
-        <Image Grid.Column="0" Name="thumbnail" Source="/Images/notfound.png" VerticalAlignment="Top" Stretch="Uniform"/>
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,4" >
+            <Button Width="100" Height="30" FontSize="16" Margin="0" Padding="0" Click="OnCloseButtonClicked">Bookmark</Button>
+            <Button Width="100" Height="30" FontSize="16" Margin="0" Padding="0" Click="OnCloseButtonClicked">Close</Button>
+        </StackPanel>
         
-        <Grid Grid.Column="1" VerticalAlignment="Top" Margin="4,0,0,0">
+        <Image Grid.Column="0" Grid.Row="1" Name="thumbnail" Source="/Images/notfound.png" VerticalAlignment="Top" Stretch="Uniform"/>
+        
+        <Grid Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" Margin="4,0,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
@@ -38,7 +47,7 @@
                      HorizontalAlignment="Left"
                      BorderThickness="0"
                      TextWrapping="Wrap"
-                     Margin="0,4,0,0"
+                     Margin="0"
                      Text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor"
                      IsReadOnly="True">
                 <TextBox.Style>
