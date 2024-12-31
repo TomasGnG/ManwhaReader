@@ -61,6 +61,7 @@
                   FontSize="18"
                   VerticalAlignment="Top"
                   HorizontalAlignment="Center"
+                  SelectionChanged="OnResultListItemSelected"
                   ScrollViewer.VerticalScrollBarVisibility="Visible"
                   ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListBox.ItemTemplate>

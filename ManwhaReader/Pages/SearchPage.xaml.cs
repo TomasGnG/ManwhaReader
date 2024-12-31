@@ -107,21 +107,29 @@ public partial class SearchPage : Page
         resultsList.ItemsSource = list;
     }
 
-    private async void OnResultListItemSelected(object sender, RoutedEventArgs e)
+    private async void OnResultListItemSelected(object sender, SelectionChangedEventArgs e)
     {
         try
         {
             e.Handled = true;
+            
+            if(resultsList.SelectedItem == null)
+                return;
+            
             var selected = (IProviderSearchComboBoxItem)resultsList.SelectedItem;
-            
+
             var manwha = await Provider.GetManwhaByTitle(selected.ProviderName);
-            
+
             NavigationService?.Navigate(new ManwhaPage(manwha));
         }
         catch (Exception exception)
         {
             MessageBox.Show(exception.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             Console.WriteLine(exception);
+        }
+        finally
+        {
+            resultsList.SelectedItem = null;
         }
     }
 
