@@ -20,4 +20,17 @@ public partial class MainWindow : Window
     {
         frame.Navigate(SearchPage);
     }
+
+    private void OnWindowKeyDown(object sender, KeyEventArgs e)
+    {
+        if (e.Key != Key.Escape)
+            return;
+
+        if (frame.Content is not ManwhaPage)
+            return;
+        
+        e.Handled = true;
+        frame.NavigationService.GoBack();
+        frame.NavigationService.RemoveBackEntry();
+    }
 }

@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Background="{StaticResource BackgroundBrush}"
+        KeyDown="OnWindowKeyDown"
         WindowStartupLocation="CenterScreen"
         Title="ManwhaReader" MinHeight="450" MinWidth="800">
     
@@ -27,9 +28,29 @@
                    FontWeight="Bold"
                    VerticalAlignment="Center"
                    Foreground="{StaticResource LogoGradient}">ManwhaReader</Label>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="5">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="5" >
+                <Image Cursor="Hand"
+                       ForceCursor="true"
+                       ToolTip="Opens the Bookmarks page"
+                       Margin="0,0,4,0"
+                       HorizontalAlignment="Right">
+                    <Image.Style>
+                        <Style TargetType="{x:Type Image}">
+                            <Setter Property="Source" Value="/Images/bookmark_32x32.png"/>
+                            <Setter Property="MaxHeight" Value="32"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Source" Value="/Images/bookmark_32x32_hovered.png"/>
+                                    <Setter Property="MaxHeight" Value="32"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
                 <Image MouseLeftButtonDown="OnSearchImageClicked"
                        Cursor="Hand"
+                       ForceCursor="true"
+                       ToolTip="Opens the Manwha search page"
                        HorizontalAlignment="Right">
                     <Image.Style>
                         <Style TargetType="{x:Type Image}">

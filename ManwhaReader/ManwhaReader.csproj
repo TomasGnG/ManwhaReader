@@ -34,6 +34,14 @@
       <Resource Include="Images\notfound.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Resource>
+      <None Remove="Images\bookmark_32x32_hovered.png" />
+      <Resource Include="Images\bookmark_32x32_hovered.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Images\bookmark_32x32.png" />
+      <Resource Include="Images\bookmark_32x32.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
     </ItemGroup>
 
     <ItemGroup>
