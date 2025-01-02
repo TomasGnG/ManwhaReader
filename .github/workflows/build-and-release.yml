@@ -31,8 +31,24 @@ jobs:
     - name: Create MSI Setup
       run: |
         heat dir ./publish -out ./publish/files.wxs -gg -srd -sfrag -template:product
-        candle -out ./publish/ ./publish/files.wxs
-        light -out ./publish/setup.msi ./publish/files.wixobj
+        echo '<?xml version="1.0" encoding="UTF-8"?>' > ./publish/product.wxs
+        echo '<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">' >> ./publish/product.wxs
+        echo '  <Product Id="*" Name="MyWpfApp" Language="1033" Version="1.0.0" Manufacturer="MyCompany" UpgradeCode="PUT-GUID-HERE">' >> ./publish/product.wxs
+        echo '    <Package InstallerVersion="500" Compressed="yes" InstallScope="perMachine" />' >> ./publish/product.wxs
+        echo '    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />' >> ./publish/product.wxs
+        echo '    <MediaTemplate />' >> ./publish/product.wxs
+        echo '    <Feature Id="ProductFeature" Title="MyWpfApp" Level="1">' >> ./publish/product.wxs
+        echo '      <ComponentGroupRef Id="ProductComponents" />' >> ./publish/product.wxs
+        echo '    </Feature>' >> ./publish/product.wxs
+        echo '  </Product>' >> ./publish/product.wxs
+        echo '  <Fragment>' >> ./publish/product.wxs
+        echo '    <ComponentGroup Id="ProductComponents">' >> ./publish/product.wxs
+        echo '      <ComponentRef Id="cmpAF1725E2C35C1C93BC4E87FA2A2D873D" />' >> ./publish/product.wxs
+        echo '    </ComponentGroup>' >> ./publish/product.wxs
+        echo '  </Fragment>' >> ./publish/product.wxs
+        echo '</Wix>' >> ./publish/product.wxs
+        candle -out ./publish/ ./publish/files.wxs ./publish/product.wxs
+        light -out ./publish/setup.msi ./publish/files.wixobj ./publish/product.wixobj
 
     - name: Upload Setup Artifact
       uses: actions/upload-artifact@v3
