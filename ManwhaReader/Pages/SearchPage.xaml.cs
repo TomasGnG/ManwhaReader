@@ -9,7 +9,9 @@ namespace ManwhaReader.Pages;
 
 public partial class SearchPage : Page
 {
+#pragma warning disable CS8618, CS9264
     public SearchPage()
+#pragma warning restore CS8618, CS9264
     {
         InitializeComponent();
         InitializeSearchProviders();
@@ -18,9 +20,8 @@ public partial class SearchPage : Page
         
         searchTextBox.Focus();
     }
-    
+
     private IManwhaProvider Provider { get; set; }
-    private bool searching;
 
     private void InitializeSearchProviders()
     {
@@ -42,34 +43,24 @@ public partial class SearchPage : Page
         {
             if (string.IsNullOrWhiteSpace(Dispatcher.Invoke(() => searchTextBox.Text)))
                 return;
-            
+
             if (e.Key != Key.Enter)
                 return;
-
-            if (searching)
-            {
-                e.Handled = true;
-                return;
-            }
             
-            Dispatcher.Invoke(() => Cursor = Cursors.Wait);
-            Dispatcher.Invoke(() => ForceCursor = true);
+            if(busyIndicator.IsBusy)
+                return;
 
-            searching = true;
+            busyIndicator.IsBusy = true;
             e.Handled = true;
             await ShowResults();
+            busyIndicator.IsBusy = false;
         }
         catch (Exception ex)
         {
-            e.Handled = false;
             MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             Console.WriteLine(ex);
-        }
-        finally
-        {
-            searching = false;
-            Cursor = Cursors.Arrow;
-            ForceCursor = false;
+            e.Handled = false;
+            busyIndicator.IsBusy = false;
         }
     }
 
@@ -116,6 +107,7 @@ public partial class SearchPage : Page
             if(resultsList.SelectedItem == null)
                 return;
             
+            busyIndicator.IsBusy = true;
             var selected = (IProviderSearchComboBoxItem)resultsList.SelectedItem;
 
             var manwha = await Provider.GetManwhaByTitle(selected.ProviderName);
@@ -130,6 +122,7 @@ public partial class SearchPage : Page
         finally
         {
             resultsList.SelectedItem = null;
+            busyIndicator.IsBusy = false;
         }
     }
 

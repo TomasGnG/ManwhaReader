@@ -48,6 +48,10 @@
       <ProjectReference Include="..\ManwhaReader.Core\ManwhaReader.Core.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="DevExpress.Xpo" Version="24.2.3" />
+    </ItemGroup>
+
     <PropertyGroup>
         <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
     </PropertyGroup>

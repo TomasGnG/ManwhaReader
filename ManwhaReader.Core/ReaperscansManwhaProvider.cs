@@ -14,7 +14,7 @@ public class ReaperscansManwhaProvider : IManwhaProvider
         if (string.IsNullOrWhiteSpace(searchQuery))
             throw new ArgumentException("Value cannot be null or whitespace.", nameof(searchQuery));
 
-        using var client = CreateHttpClient();
+        using var client = HttpClientProvider.CreateHttpClient();
         var url = $"https://api.reaperscans.com/query?adult=true&query_string={searchQuery}";
         var jsonString = await client.GetStringAsync(url);
 
@@ -59,10 +59,13 @@ public class ReaperscansManwhaProvider : IManwhaProvider
         throw new NotImplementedException();
     }
 
-    private static HttpClient CreateHttpClient()
+    public Task<IEnumerable<Chapter>> GetChaptersByManwhaTitle(string title)
     {
-        var client = new HttpClient();
-        client.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36");
-        return client;
-    }    
+        throw new NotImplementedException();
+    }
+
+    public Task<IEnumerable<ChapterImageUrl>> GetChapterImageUrls(string manwhaTitle, double chapterNumber)
+    {
+        throw new NotImplementedException();
+    }
 }

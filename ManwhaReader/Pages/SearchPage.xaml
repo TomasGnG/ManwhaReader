@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:ManwhaReader"
       mc:Ignorable="d"
       Background="{StaticResource BackgroundBrush}"
       HorizontalAlignment="Stretch"
@@ -42,7 +43,7 @@
         
         <StackPanel Grid.Row="2">
             <Label Style="{StaticResource LabelStyle}">Search Manwhas</Label>
-            <TextBox Name="searchTextBox" MaxWidth="250" ForceCursor="False" Cursor="Arrow" FontSize="16" KeyDown="OnSearchFieldKeyDown"/>
+            <TextBox Name="searchTextBox" MaxWidth="250" FontSize="16" KeyDown="OnSearchFieldKeyDown"/>
             <CheckBox Name="loadImagesCheckBox"
                       IsChecked="True"
                       HorizontalAlignment="Center"
@@ -87,5 +88,7 @@
                 </Style>
             </ListBox.Style>
         </ListBox>
+        
+        <local:BusyIndicator Grid.Row="0" Grid.RowSpan="6" x:Name="busyIndicator" IsBusy="False" Visibility="Hidden" />
     </Grid>
 </Page>

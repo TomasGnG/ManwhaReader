@@ -9,4 +9,6 @@ public interface IManwhaProvider
     
     Task<IEnumerable<IManwhaSearchResult>> Search(string searchQuery, bool loadImages = true);
     Task<Manwha> GetManwhaByTitle(string title);
+    Task<IEnumerable<Chapter>> GetChaptersByManwhaTitle(string title);
+    Task<IEnumerable<ChapterImageUrl>> GetChapterImageUrls(string manwhaTitle, double chapterNumber);
 }

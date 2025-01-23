@@ -3,9 +3,9 @@ using DevExpress.Xpo;
 namespace ManwhaReader.Core.DatabaseObjects;
 
 [Persistent("Chapter")]
-public class Chapter : PersistentBase
+public class Chapter : XPBaseObject
 {
-    protected Chapter(Session session) : base(session) { }
+    public Chapter(Session session) : base(session) { }
     
     [Key(true), Persistent("ChapterID")]
     public Guid ChapterId
@@ -13,11 +13,21 @@ public class Chapter : PersistentBase
         get => GetPropertyValue<Guid>();
         set => SetPropertyValue(nameof(ChapterId), value);
     }
+    
+    [NonPersistent]
+    public string Name => string.IsNullOrWhiteSpace(ChapterTitle) ? $"Chapter {Number}" : $"Chapter {Number} | {ChapterTitle}";
+
+    [Persistent("ChapterTitle")]
+    public string? ChapterTitle
+    {
+        get => GetPropertyValue<string?>();
+        set => SetPropertyValue(nameof(ChapterTitle), value);
+    }
 
     [Persistent("Number")]
-    public int Number
+    public double Number
     {
-        get => GetPropertyValue<int>();
+        get => GetPropertyValue<double>();
         set => SetPropertyValue(nameof(Number), value);
     }
 
@@ -27,17 +37,14 @@ public class Chapter : PersistentBase
         get => GetPropertyValue<bool>();
         set => SetPropertyValue(nameof(AlreadyRead), value);
     }
-
-    public List<string> ImageUrls
-    {
-        get => GetPropertyValue<List<string>>();
-        set => SetPropertyValue(nameof(ImageUrls), value);
-    }
     
-    [Association]
-    public Manwha Manwha
+    [Persistent("ManwhaID")]
+    public Guid Manwha
     {
-        get => GetPropertyValue<Manwha>();
+        get => GetPropertyValue<Guid>();
         set => SetPropertyValue(nameof(Manwha), value);
     }
+    
+    [NonPersistent]
+    public IEnumerable<ChapterImageUrl> ImageUrls => Session.DefaultSession.Query<ChapterImageUrl>().Where(x => x.Chapter == ChapterId).OrderBy(x => x.UrlNumber);
 }

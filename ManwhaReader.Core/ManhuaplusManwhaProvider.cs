@@ -14,7 +14,9 @@ public class ManhuaplusManwhaProvider : IManwhaProvider
         if (string.IsNullOrWhiteSpace(searchQuery))
             throw new ArgumentException("Value cannot be null or whitespace.", nameof(searchQuery));
 
-        using var client = CreateHttpClient();
+        using var client = HttpClientProvider.CreateHttpClient();
+        client.DefaultRequestHeaders.Add("Referer", "https://manhuaplus.com/");
+        
         var url = $"https://manhuaplus.com/?s={searchQuery}&post_type=wp-manga";
         
         var htmlString = await client.GetStringAsync(url);
@@ -66,11 +68,13 @@ public class ManhuaplusManwhaProvider : IManwhaProvider
         throw new NotImplementedException();
     }
 
-    private static HttpClient CreateHttpClient()
+    public Task<IEnumerable<Chapter>> GetChaptersByManwhaTitle(string title)
     {
-        var client = new HttpClient();
-        client.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36");
-        client.DefaultRequestHeaders.Add("Referer", "https://manhuaplus.com/");
-        return client;
-    }   
+        throw new NotImplementedException();
+    }
+
+    public Task<IEnumerable<ChapterImageUrl>> GetChapterImageUrls(string manwhaTitle, double chapterNumber)
+    {
+        throw new NotImplementedException();
+    }
 }

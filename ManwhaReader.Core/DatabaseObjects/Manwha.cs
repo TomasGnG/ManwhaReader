@@ -3,7 +3,7 @@ using DevExpress.Xpo;
 namespace ManwhaReader.Core.DatabaseObjects;
 
 [Persistent("Manwha")]
-public class Manwha : PersistentBase
+public class Manwha : XPBaseObject
 {
     public Manwha(Session session) : base(session) { }
 
@@ -43,13 +43,15 @@ public class Manwha : PersistentBase
     }
 
     [Persistent("Tags")]
-    public List<string> Tags
+    public string Tags
     {
-        get => GetPropertyValue<List<string>>();
+        get => GetPropertyValue<string>();
         set => SetPropertyValue(nameof(Tags), value);
     }
+    
+    public IEnumerable<string> TagsAsEnumerable() => Tags.Split(';');
 
-    [Persistent("ChapterID")]
+    [Persistent("LastReadChapterID")]
     [NoForeignKey]
     public Chapter LastReadChapter
     {
@@ -57,10 +59,6 @@ public class Manwha : PersistentBase
         set => SetPropertyValue(nameof(LastReadChapter), value);
     }
 
-    [Association]
-    public XPCollection<Chapter> Chapters
-    {
-        get => GetPropertyValue<XPCollection<Chapter>>();
-        set => SetPropertyValue(nameof(Chapters), value);
-    }
+    [NonPersistent]
+    public IEnumerable<Chapter> Chapters => Session.DefaultSession.Query<Chapter>().Where(x => x.Manwha == ManwhaId);
 }

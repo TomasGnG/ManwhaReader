@@ -6,7 +6,7 @@
       xmlns:system="clr-namespace:System;assembly=System.Runtime"
       mc:Ignorable="d"
       Background="{StaticResource BackgroundBrush}"
-      Title="ManwhaPage" MinHeight="450" MinWidth="600">
+      Title="ManwhaPage">
     <Grid Margin="15" HorizontalAlignment="Center">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="250"/>
@@ -14,7 +14,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition />
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         
         <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,4" >
@@ -22,20 +22,21 @@
             <Button Width="100" Height="30" FontSize="16" Margin="0" Padding="0" Click="OnCloseButtonClicked">Close</Button>
         </StackPanel>
         
-        <Image Grid.Column="0" Grid.Row="1" Name="thumbnail" Source="/Images/notfound.png" VerticalAlignment="Top" Stretch="Uniform"/>
-        
-        <Grid Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" Margin="4,0,0,0">
+        <Image Grid.Column="0" Grid.Row="1" Name="thumbnail" Source="/Images/notfound.png" VerticalAlignment="Top" Stretch="Uniform" />
+
+        <Grid Grid.Column="1" Grid.Row="1" VerticalAlignment="Stretch" Margin="4,0,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition />
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="8"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="4"/>
-                <RowDefinition />
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="8"/>
-                <RowDefinition />
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             
             <TextBox Grid.Row="0"

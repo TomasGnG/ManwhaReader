@@ -30,6 +30,7 @@
                    Foreground="{StaticResource LogoGradient}">ManwhaReader</Label>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="5" >
                 <Image Cursor="Hand"
+                       MouseLeftButtonDown="OnBookmarksImageClicked"
                        ForceCursor="true"
                        ToolTip="Opens the Bookmarks page"
                        Margin="0,0,4,0"

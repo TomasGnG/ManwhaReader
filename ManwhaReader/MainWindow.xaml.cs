@@ -14,7 +14,8 @@ public partial class MainWindow : Window
         InitializeComponent();
     }
 
-    private SearchPage SearchPage { get; set; } = new();
+    private SearchPage SearchPage { get; } = new();
+    private BookmarksPage BookmarksPage { get; } = new();
 
     private void OnSearchImageClicked(object sender, MouseButtonEventArgs e)
     {
@@ -32,5 +33,10 @@ public partial class MainWindow : Window
         e.Handled = true;
         frame.NavigationService.GoBack();
         frame.NavigationService.RemoveBackEntry();
+    }
+
+    private void OnBookmarksImageClicked(object sender, MouseButtonEventArgs e)
+    {
+        frame.Navigate(BookmarksPage);
     }
 }

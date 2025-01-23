@@ -11,5 +11,6 @@
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
         </Style>
+        <ResourceDictionary x:Key="Dictionary" Source="pack://application:,,,/BusyIndicator;component/Theme/Default.xaml"/>
     </Application.Resources>
 </Application>
